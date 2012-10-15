@@ -1,5 +1,6 @@
 package com.srhub.formula.core;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -42,6 +43,37 @@ public class OrPredicate implements Predicate {
 		}
 
 		return variables;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + Arrays.hashCode(predicates);
+		return result;
+	}
+
+	@Override
+	public boolean equals(final Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		final OrPredicate other = (OrPredicate) obj;
+		if (!Arrays.equals(predicates, other.predicates)) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "OrPredicate [predicates=" + predicates + "]";
 	}
 
 }
